@@ -7,6 +7,10 @@ pipeline {
             echo "$GIT_BRANCH"
          }
       }
+      stage('Initialize'){
+      	def dockerHome = tool 'mydocker'
+       	env.PATH = "${dockerHome}/bin:${env.PATH}"
+      }
       stage('Docker build') {
          steps {
             sh 'docker images -a'
